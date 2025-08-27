@@ -1,43 +1,43 @@
-# Task Management Tool
+# タスク管理ツール
 
-A simple web-based task management application built with Flask and containerized with Docker.
+Flaskで構築し、Dockerでコンテナ化されたシンプルなWebベースのタスク管理アプリケーションです。
 
-## Description
+## 概要
 
-This application allows users to create, view, complete, and delete tasks. It was built as a demonstration of a simple web application using Python's Flask framework. The entire application is designed to be run inside a Docker container.
+このアプリケーションは、ユーザーがタスクを作成、表示、完了、削除できるようにするものです。PythonのWebフレームワークであるFlaskを使用したシンプルなWebアプリケーションのデモンストレーションとして作成されました。アプリケーション全体がDockerコンテナ内で実行されるように設計されています。
 
-## Tech Stack
+## 技術スタック
 
-- **Backend:** Python 3.9, Flask
-- **WSGI Server:** Gunicorn
-- **Containerization:** Docker
+- **バックエンド:** Python 3.9, Flask
+- **WSGIサーバー:** Gunicorn
+- **コンテナ化:** Docker
 
-## How to Run
+## 実行方法
 
-To run this application, you need to have Docker installed on your system.
+このアプリケーションを実行するには、お使いのシステムにDockerがインストールされている必要があります。
 
-1.  **Build the Docker image:**
-    Open your terminal in the project root directory and run the following command to build the Docker image. You may need to use `sudo` depending on your Docker setup.
+1.  **Dockerイメージのビルド:**
+    プロジェクトのルートディレクトリでターミナルを開き、以下のコマンドを実行してDockerイメージをビルドします。Dockerのセットアップによっては `sudo` が必要になる場合があります。
 
     ```bash
     docker build -t task-manager .
     ```
 
-2.  **Run the Docker container:**
-    Once the image is built, run the following command to start the application container.
+2.  **Dockerコンテナの実行:**
+    イメージがビルドされたら、以下のコマンドを実行してアプリケーションコンテナを起動します。
 
     ```bash
     docker run -d -p 5000:5000 --name task-manager-app task-manager
     ```
-    *   `-d` runs the container in detached mode.
-    *   `-p 5000:5000` maps port 5000 of your machine to port 5000 of the container.
-    *   `--name task-manager-app` gives a convenient name to the running container.
+    *   `-d` はコンテナをデタッチモード（バックグラウンド）で実行します。
+    *   `-p 5000:5000` は、お使いのマシンのポート5000をコンテナのポート5000にマッピングします。
+    *   `--name task-manager-app` は、実行中のコンテナに分かりやすい名前を付けます。
 
-3.  **Access the application:**
-    Open your web browser and navigate to:
+3.  **アプリケーションへのアクセス:**
+    Webブラウザを開き、次のURLにアクセスしてください:
     [http://localhost:5000](http://localhost:5000)
 
-4.  **To stop and remove the container:**
+4.  **コンテナの停止と削除:**
     ```bash
     docker stop task-manager-app
     docker rm task-manager-app
