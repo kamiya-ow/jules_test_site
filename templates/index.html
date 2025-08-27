@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク管理ツール</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>タスク管理ツール</h1>
+
+        <form action="{{ url_for('index') }}" method="post" class="task-form">
+            <input type="text" name="content" placeholder="新しいタスクを入力..." required>
+            <button type="submit">追加</button>
+        </form>
+
+        <div class="task-list">
+            <h2>タスク一覧</h2>
+            {% for task in tasks %}
+            <div class="task-item {% if task.done %}done{% endif %}">
+                <span class="task-content">{{ task.content }}</span>
+                <div class="task-actions">
+                    <a href="{{ url_for('complete_task', task_id=task.id) }}" class="button complete-button">
+                        {% if task.done %}元に戻す{% else %}完了{% endif %}
+                    </a>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}" class="button delete-button">削除</a>
+                </div>
+            </div>
+            {% else %}
+            <p>タスクはありません。</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
